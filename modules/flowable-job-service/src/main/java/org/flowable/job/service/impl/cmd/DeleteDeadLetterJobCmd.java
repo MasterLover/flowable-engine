@@ -36,10 +36,10 @@ public class DeleteDeadLetterJobCmd implements Command<Object>, Serializable {
     private static final Logger LOGGER = LoggerFactory.getLogger(DeleteDeadLetterJobCmd.class);
     private static final long serialVersionUID = 1L;
 
-    protected String timerJobId;
+    protected String deadLetterJobId;
 
-    public DeleteDeadLetterJobCmd(String timerJobId) {
-        this.timerJobId = timerJobId;
+    public DeleteDeadLetterJobCmd(String deadLetterJobId) {
+        this.deadLetterJobId = deadLetterJobId;
     }
 
     @Override
@@ -61,16 +61,16 @@ public class DeleteDeadLetterJobCmd implements Command<Object>, Serializable {
     }
 
     protected DeadLetterJobEntity getJobToDelete(CommandContext commandContext) {
-        if (timerJobId == null) {
+        if (deadLetterJobId == null) {
             throw new FlowableIllegalArgumentException("jobId is null");
         }
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Deleting job {}", timerJobId);
+            LOGGER.debug("Deleting job {}", deadLetterJobId);
         }
 
-        DeadLetterJobEntity job = CommandContextUtil.getDeadLetterJobEntityManager(commandContext).findById(timerJobId);
+        DeadLetterJobEntity job = CommandContextUtil.getDeadLetterJobEntityManager(commandContext).findById(deadLetterJobId);
         if (job == null) {
-            throw new FlowableObjectNotFoundException("No dead letter job found with id '" + timerJobId + "'", Job.class);
+            throw new FlowableObjectNotFoundException("No dead letter job found with id '" + deadLetterJobId + "'", Job.class);
         }
 
         return job;
