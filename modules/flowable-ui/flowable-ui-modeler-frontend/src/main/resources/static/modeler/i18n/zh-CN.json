@@ -1594,12 +1594,12 @@
                 },
                 "EVENTREGISTRYPACKAGE": {
                     "EVENTKEY": {
-                        "TITLE": "Event key",
-                        "DESCRIPTION": "Definition of the event key"
+                        "TITLE": "事件 key",
+                        "DESCRIPTION": "定义事件Key"
                     },
                     "EVENTNAME": {
-                        "TITLE": "Event name",
-                        "DESCRIPTION": "Definition of the event name"
+                        "TITLE": "事件名称",
+                        "DESCRIPTION": "定义时间名称"
                     },
                     "EVENTINPARAMETERS": {
                         "TITLE": "Mapping to event payload",
@@ -1668,32 +1668,32 @@
                 },
                 "PROCESSTASKINPARAMETERSPACKAGE": {
                     "PROCESSTASKINPARAMETERS": {
-                        "TITLE": "在参数中",
-                        "DESCRIPTION": "输入参数的定义"
+                        "TITLE": "输入参数",
+                        "DESCRIPTION": "定义输入参数"
                     }
                 },
                 "PROCESSTASKOUTPARAMETERSPACKAGE": {
                     "PROCESSTASKOUTPARAMETERS": {
                         "TITLE": "输出参数",
-                        "DESCRIPTION": "输出参数的定义"
+                        "DESCRIPTION": "定义输出参数"
                     }
                 },
                 "CASETASKINPARAMETERSPACKAGE": {
                     "CASETASKINPARAMETERS": {
-                        "TITLE": "In parameters",
-                        "DESCRIPTION": "Definition of the input parameters"
+                        "TITLE": "输入参数",
+                        "DESCRIPTION": "定义输入参数"
                     }
                 },
                 "CASETASKOUTPARAMETERSPACKAGE": {
                     "CASETASKOUTPARAMETERS": {
-                        "TITLE": "Out parameters",
-                        "DESCRIPTION": "Definition of the output parameters"
+                        "TITLE": "输出参数",
+                        "DESCRIPTION": "定义输出参数"
                     }
                 },
                 "IDVARIABLENAMEPACKAGE": {
                     "IDVARIABLENAME": {
-                        "TITLE": "ID variable",
-                        "DESCRIPTION": "If set, the instance id of the started instance will be stored in this variable"
+                        "TITLE": "ID 变量",
+                        "DESCRIPTION": "如果设置了此变量,流程在启动时将会存储此变量"
                     }
                 },
                 "TIMEREXPRESSIONPACKAGE": {
@@ -1881,20 +1881,20 @@
                     "DESCRIPTION": "一个HTTP任务"
                 },
                 "MAILTASK": {
-                    "TITLE": "Mail task",
-                    "DESCRIPTION": "A mail task"
+                    "TITLE": "邮件任务",
+                    "DESCRIPTION": "邮件任务"
                 },
                 "SCRIPTTASK": {
                     "TITLE": "脚本任务",
                     "DESCRIPTION": "具有脚本逻辑的自动任务"
                 },
                 "SENDEVENTTASK": {
-                    "TITLE": "Send event task",
-                    "DESCRIPTION": "A send event task"
+                    "TITLE": "发送事件任务",
+                    "DESCRIPTION": "可以发送事件的任务"
                 },
                 "EXTERNALWORKERTASK": {
-                    "TITLE": "External Worker task",
-                    "DESCRIPTION": "An task that creates a job which can be executed by an external worker"
+                    "TITLE": "外部任务",
+                    "DESCRIPTION": "创建可以由外部 Worker 执行的任务"
                 },
                 "MILESTONE": {
                     "TITLE": "里程碑",
@@ -2041,12 +2041,12 @@
             "TITLE": "决策表",
             "SEARCH-PLACEHOLDER": "搜索",
             "ACTION": {
-                "CREATE-DECISION-SERVICE": "Create Decision Service",
+                "CREATE-DECISION-SERVICE": "创建决策服务",
                 "CREATE": "创建决策表",
                 "IMPORT-DECISION-TABLE": "导入决策表",
-                "IMPORT-DECISION-SERVICE": "Import Decision Service",
+                "IMPORT-DECISION-SERVICE": "导入决策服务",
                 "CREATE-DECISION-TABLES-INLINE": "现在创建一个新的决策表!",
-                "CREATE-DECISION-SERVICES-INLINE": "Create a new decision service now!",
+                "CREATE-DECISION-SERVICES-INLINE": "现在创建一个新的决策服务!",
                 "SHOW-MORE": "显示更多..."
             },
 
@@ -2057,10 +2057,10 @@
                 "DECISION-TABLES-EMPTY": "没有决策表。若要添加一个，请单击创建决策表 ",
                 "FILTER-TEXT": ", 匹配 \"{{filterText}}\"",
                 "FILTER-TEXT-EMPTY": "没有匹配到决策表 \"{{filterText}}\"",
-                "DECISION-SERVICES": "Decision services",
-                "DECISION-SERVICES-COUNT": "There are {{total}} decision services",
-                "DECISION-SERVICES-ONE": "There is one decision service",
-                "DECISION-SERVICES-EMPTY": "There are no decision services. To add one, click Create Decision Service."
+                "DECISION-SERVICES": "决策服务",
+                "DECISION-SERVICES-COUNT": "共有 {{total}} 个决策服务",
+                "DECISION-SERVICES-ONE": "有一个决策服务",
+                "DECISION-SERVICES-EMPTY": "没有决策服务。若要添加一个，请单击创建决策服务"
             },
 
             "SORT": {
@@ -2284,44 +2284,44 @@
             }
         },
     "DECISION-SERVICE": {
-            "NAME": "Decision service name",
-            "KEY": "Decision service key",
-            "DESCRIPTION": "Description",
+            "NAME": "决策服务名称",
+            "KEY": "决策服务Key",
+            "DESCRIPTION": "描述",
             "ACTION": {
-                "DETAILS": "Show details",
-                "EDIT": "Modify model properties",
-                "SHARE": "Share this decision service",
-                "DELETE": "Delete this decision service",
-                "ADD-COMMENT": "+ Add comment",
-                "CREATE-CONFIRM": "Create new decision service",
-                "OPEN-IN-EDITOR": "Decision Service Editor",
-                "EXPORT": "Export decision service",
-                "DELETE-CONFIRM": "Delete decision service",
-                "USE-AS-NEW-VERSION": "Use as new version",
-                "FAVORITE": "Favorite this decision service",
-                "DUPLICATE": "Duplicate this decision service",
-                "DUPLICATE-CONFIRM": "Duplicate the decision service"
+                "DETAILS": "显示详情",
+                "EDIT": "修改模型属性",
+                "SHARE": "共享此决策服务",
+                "DELETE": "删除此决策服务",
+                "ADD-COMMENT": "+ 添加注释",
+                "CREATE-CONFIRM": "创建新的决策服务",
+                "OPEN-IN-EDITOR": "决策服务编辑器",
+                "EXPORT": "导出决策服务",
+                "DELETE-CONFIRM": "删除决策服务",
+                "USE-AS-NEW-VERSION": "作为新版本使用",
+                "FAVORITE": "收藏此决策服务",
+                "DUPLICATE": "复制此决策服务",
+                "DUPLICATE-CONFIRM": "复制此决策服务"
             },
             "DETAILS": {
-                "HISTORY-TITLE": "History",
-                "COMMENTS-TITLE": "Comments",
-                "LAST-UPDATED-BY": "Last updated by {{lastUpdatedBy}} - {{lastUpdated | dateformat}}",
-                "CREATED-BY": "Created by {{createdBy}}"
+                "HISTORY-TITLE": "历史",
+                "COMMENTS-TITLE": "注释",
+                "LAST-UPDATED-BY": "最近由{{lastUpdatedBy}} - 更新于 {{lastUpdated | dateformat}}",
+                "CREATED-BY": "由 {{createdBy}} 创建"
             },
             "POPUP": {
-                "CREATE-TITLE": "Create a new decision service",
-                "CREATE-DESCRIPTION": "You need to give a name for the new decision service and you may want to add a description at the same time.",
-                "DUPLICATE-TITLE": "Duplicate decision service",
-                "DUPLICATE-DESCRIPTION": "You need to give a name for the new decision service and you may want to add a description at the same time.",
-                "DELETE-TITLE": "Delete decision service",
-                "DELETE-DESCRIPTION": "Are you sure you want to delete the decision service \"{{name}}\"?",
-                "IMPORT-DESCRIPTION": "Please browse for or drop a DMN XML definition with an .dmn or .dmn.xml extension",
-                "IMPORT-TITLE": "Import a DMN decision service model",
+                "CREATE-TITLE": "创建新的决策服务",
+                "CREATE-DESCRIPTION": "您需要为新的决策服务命名，并添加您可能需要的描述",
+                "DUPLICATE-TITLE": "重复的决策服务",
+                "DUPLICATE-DESCRIPTION": "您需要为新的决策服务命名，并添加您可能需要的描述",
+                "DELETE-TITLE": "删除决策服务",
+                "DELETE-DESCRIPTION": "您确定删除 \"{{name}}\" 决策服务?",
+                "IMPORT-DESCRIPTION": "请浏览或拖放.dmn or .dmn.xml扩展名的的 DMN XML文件",
+                "IMPORT-TITLE": "导入一个 DMN 决策服务模型",
                 "IMPORT": {
-                    "DROPZONE": "Drop a .dmn or .dmn.xml DMN XML file",
+                    "DROPZONE": "拖放一个 .dmn or .dmn.xml DMN XML 文件",
                     "CANCEL-UPLOAD": "Cancel the upload",
-                    "ERROR": "Error while processing the DMN XML file",
-                    "NO-DROP": "Drag and drop not supported"
+                    "ERROR": "解析 DMN XML 文件出错",
+                    "NO-DROP": "不支持拖放"
                 }
             }
         },
@@ -2465,7 +2465,7 @@
                 "IMPORT": {
                     "DROPZONE": "扩拽一个.zip 应用程序定义文件",
                     "CANCEL-UPLOAD": "取消上传",
-                    "RENEWIDM-IDS": "Renew the user and group identifiers when importing step and BPMN models. This is often required when importing the 应用程序定义 into a different Flowable environment. It will try to link the human steps and user tasks to the right user and group in this target environment.",
+                    "RENEWIDM-IDS": "通常导入应用模型到新的Flowable环境过程时,在导入BPMN模型过程中可能需要更新用户和群组信息,并且将尝试自动匹配目标环境中正确的用户和群组信息到人工步骤和用户任务中.",
                     "ERROR": "处理应用程序定义文件时出错",
                     "NO-DROP": "不支持拖放"
                 },
@@ -2750,12 +2750,12 @@
     "PROPERTY.EXCEPTIONS.EMPTY": "No exceptions selected",
     "PROPERTY.EXCEPTIONS.CODE": "Code",
     "PROPERTY.EXCEPTIONS.CODE.PLACEHOLDER": "Enter a code",
-    "PROPERTY.EXCEPTIONS.CLASS": "Class",
-    "PROPERTY.EXCEPTIONS.CLASS.PLACEHOLDER": "Enter an class",
+    "PROPERTY.EXCEPTIONS.CLASS": "类",
+    "PROPERTY.EXCEPTIONS.CLASS.PLACEHOLDER": "请输入类",
     "PROPERTY.EXCEPTIONS.CHILDREN": "Include child exceptions",
 
-    "PROPERTY.DATAPROPERTIES.VALUES": "{{length}} data objects",
-    "PROPERTY.DATAPROPERTIES.EMPTY": "No data objects configured",
+    "PROPERTY.DATAPROPERTIES.VALUES": "{{length}} 个数据对象s",
+    "PROPERTY.DATAPROPERTIES.EMPTY": "没有配置数据对象",
     "PROPERTY.DATAPROPERTIES.ID": "Id",
     "PROPERTY.DATAPROPERTIES.ID.PLACEHOLDER": "输入一个id",
     "PROPERTY.DATAPROPERTIES.NAME": "名称",
@@ -2918,28 +2918,28 @@
     "PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.STATIC": "任务创建后的固定持续时间",
     "PROPERTY.DUEDATE.TASK-DUE-DATE-OPTIONS.FIELD": "基于字段",
 
-    "PROPERTY.EVENTINPARAMETERS.VALUE": "{{length}} event in parameter items",
-    "PROPERTY.EVENTINPARAMETERS.EMPTY": "No in parameter configured",
+    "PROPERTY.EVENTINPARAMETERS.VALUE": "{{length}} 个事件输入参数项",
+    "PROPERTY.EVENTINPARAMETERS.EMPTY": "没有配置输入参数",
 
-    "PROPERTY.EVENTINPARAMETERS.EVENTNAME": "Event property name",
-    "PROPERTY.EVENTINPARAMETERS.EVENTNAME.PLACEHOLDER": "Enter an event property name",
-    "PROPERTY.EVENTINPARAMETERS.EVENTTYPE": "Type",
-    "PROPERTY.EVENTINPARAMETERS.VARIABLENAME": "Variable name",
-    "PROPERTY.EVENTINPARAMETERS.VARIABLENAME.PLACEHOLDER": "Enter a variable name",
-    "PROPERTY.EVENTINPARAMETERS.NOSELECTION": "No parameter selected",
+    "PROPERTY.EVENTINPARAMETERS.EVENTNAME": "事件属性名",
+    "PROPERTY.EVENTINPARAMETERS.EVENTNAME.PLACEHOLDER": "请输入事件属性名",
+    "PROPERTY.EVENTINPARAMETERS.EVENTTYPE": "类型",
+    "PROPERTY.EVENTINPARAMETERS.VARIABLENAME": "变量名",
+    "PROPERTY.EVENTINPARAMETERS.VARIABLENAME.PLACEHOLDER": "请输入变量名",
+    "PROPERTY.EVENTINPARAMETERS.NOSELECTION": "没有选择参数",
 
-    "PROPERTY.EVENTOUTPARAMETERS.VALUE": "{{length}} event out parameter items",
-    "PROPERTY.EVENTOUTPARAMETERS.EMPTY": "No out parameter configured",
-    "PROPERTY.EVENTOUTPARAMETERS.EVENTNAME": "Event property name",
+    "PROPERTY.EVENTOUTPARAMETERS.VALUE": "{{length}} 个事件输出参数项",
+    "PROPERTY.EVENTOUTPARAMETERS.EMPTY": "没有配置输入参数",
+    "PROPERTY.EVENTOUTPARAMETERS.EVENTNAME": "事件属性名",
 
-    "PROPERTY.EVENTOUTPARAMETERS.EVENTNAME.PLACEHOLDER": "Enter an event property name",
-    "PROPERTY.EVENTOUTPARAMETERS.EVENTTYPE": "Type",
-    "PROPERTY.EVENTOUTPARAMETERS.VARIABLENAME": "Variable name",
-    "PROPERTY.EVENTOUTPARAMETERS.VARIABLENAME.PLACEHOLDER": "Enter a variable name",
-    "PROPERTY.EVENTOUTPARAMETERS.NOSELECTION": "No parameter selected",
+    "PROPERTY.EVENTOUTPARAMETERS.EVENTNAME.PLACEHOLDER": "请输入事件属性名",
+    "PROPERTY.EVENTOUTPARAMETERS.EVENTTYPE": "类型",
+    "PROPERTY.EVENTOUTPARAMETERS.VARIABLENAME": "变量名",
+    "PROPERTY.EVENTOUTPARAMETERS.VARIABLENAME.PLACEHOLDER": "请输入变量名",
+    "PROPERTY.EVENTOUTPARAMETERS.NOSELECTION": "没有选择参数",
 
-    "PROPERTY.EVENTCORRELATIONPARAMETERS.VALUE": "{{length}} correlation parameters",
-    "PROPERTY.EVENTCORRELATIONPARAMETERS.EMPTY": "No correlation parameters configured",
+    "PROPERTY.EVENTCORRELATIONPARAMETERS.VALUE": "{{length}} 个相关参数",
+    "PROPERTY.EVENTCORRELATIONPARAMETERS.EMPTY": "未配置相关参数",
 
     "PROPERTY.EVENTCORRELATIONPARAMETERS.NAME": "名称",
     "PROPERTY.EVENTCORRELATIONPARAMETERS.NAME.PLACEHOLDER": "请输入名称",
