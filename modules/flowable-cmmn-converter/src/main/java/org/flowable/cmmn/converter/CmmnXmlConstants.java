@@ -86,6 +86,7 @@ public interface CmmnXmlConstants {
     String ELEMENT_REPETITION_RULE = "repetitionRule";
     String ELEMENT_COMPLETION_NEUTRAL_RULE = "completionNeutralRule";
     String ELEMENT_PARENT_COMPLETION_RULE = "parentCompletionRule";
+    String ELEMENT_REACTIVATION_RULE = "reactivationRule";
 
     String ELEMENT_PROCESS = "process";
     String ELEMENT_DECISION = "decision";
@@ -151,6 +152,8 @@ public interface CmmnXmlConstants {
 
     String ATTRIBUTE_TYPE = "type";
 
+    String ATTRIBUTE_REACTIVATION_RULE_CONDITION = "reactivationRuleCondition";
+
     String ATTRIBUTE_CLASS = "class";
     String ATTRIBUTE_EXPRESSION = "expression";
     String ATTRIBUTE_DELEGATE_EXPRESSION = "delegateExpression";
@@ -190,6 +193,7 @@ public interface CmmnXmlConstants {
     String ATTRIBUTE_EVENT_LISTENER_TYPE = "eventType"; // Note that this is the same as ELEMENT_EVENT_TYPE. We can't change this (backwards compatibility)
     String ATTRIBUTE_EVENT_LISTENER_AVAILABLE_CONDITION = "availableCondition";
     String ATTRIBUTE_EVENT_LISTENER_SIGNAL_REF = "signalRef";
+    String ATTRIBUTE_USER_EVENT_LISTENER_REACTIVATE = "reactivateEventListener";
 
     String ELEMENT_EVENT_TYPE = "eventType";
     String ELEMENT_EVENT_CORRELATION_PARAMETER = "eventCorrelationParameter";

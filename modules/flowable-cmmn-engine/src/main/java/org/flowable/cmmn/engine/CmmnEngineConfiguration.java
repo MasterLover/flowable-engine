@@ -79,6 +79,7 @@ import org.flowable.cmmn.engine.impl.history.DefaultCmmnHistoryManager;
 import org.flowable.cmmn.engine.impl.history.async.AsyncCmmnHistoryManager;
 import org.flowable.cmmn.engine.impl.history.async.CmmnAsyncHistoryConstants;
 import org.flowable.cmmn.engine.impl.history.async.json.transformer.CaseInstanceEndHistoryJsonTransformer;
+import org.flowable.cmmn.engine.impl.history.async.json.transformer.CaseInstanceReactivateHistoryJsonTransformer;
 import org.flowable.cmmn.engine.impl.history.async.json.transformer.CaseInstanceStartHistoryJsonTransformer;
 import org.flowable.cmmn.engine.impl.history.async.json.transformer.CaseInstanceUpdateBusinessKeyHistoryJsonTransformer;
 import org.flowable.cmmn.engine.impl.history.async.json.transformer.CaseInstanceUpdateNameHistoryJsonTransformer;
@@ -139,6 +140,7 @@ import org.flowable.cmmn.engine.impl.parser.handler.HumanTaskParseHandler;
 import org.flowable.cmmn.engine.impl.parser.handler.MilestoneParseHandler;
 import org.flowable.cmmn.engine.impl.parser.handler.PlanFragmentParseHandler;
 import org.flowable.cmmn.engine.impl.parser.handler.ProcessTaskParseHandler;
+import org.flowable.cmmn.engine.impl.parser.handler.ReactivateEventListenerParseHandler;
 import org.flowable.cmmn.engine.impl.parser.handler.ScriptTaskParseHandler;
 import org.flowable.cmmn.engine.impl.parser.handler.SendEventServiceTaskParseHandler;
 import org.flowable.cmmn.engine.impl.parser.handler.ServiceTaskParseHandler;
@@ -1008,6 +1010,7 @@ public class CmmnEngineConfiguration extends AbstractEngineConfiguration impleme
 
     @Override
     public void initMybatisTypeHandlers(Configuration configuration) {
+        super.initMybatisTypeHandlers(configuration);
         configuration.getTypeHandlerRegistry().register(VariableType.class, JdbcType.VARCHAR, new IbatisVariableTypeHandler(variableTypes));
     }
     
@@ -1332,6 +1335,7 @@ public class CmmnEngineConfiguration extends AbstractEngineConfiguration impleme
         cmmnParseHandlers.add(new SignalEventListenerParseHandler());
         cmmnParseHandlers.add(new TimerEventListenerParseHandler());
         cmmnParseHandlers.add(new UserEventListenerParseHandler());
+        cmmnParseHandlers.add(new ReactivateEventListenerParseHandler());
 
         // Replace any default handler with a custom one (if needed)
         if (getCustomCmmnParseHandlers() != null) {
@@ -1526,14 +1530,27 @@ public class CmmnEngineConfiguration extends AbstractEngineConfiguration impleme
             variableTypes.addType(new CmmnAggregatedVariableType(this));
             variableTypes.addType(new ByteArrayType());
             variableTypes.addType(new SerializableType(serializableVariableTypeTrackDeserializedObjects));
-            if (customPostVariableTypes != null) {
-                for (VariableType customVariableType : customPostVariableTypes) {
-                    variableTypes.addType(customVariableType);
+
+        } else {
+            if (customPreVariableTypes != null) {
+                for (int i = customPreVariableTypes.size() - 1; i >= 0; i--) {
+                    VariableType customVariableType = customPreVariableTypes.get(i);
+                    if (variableTypes.getVariableType(customVariableType.getTypeName()) == null) {
+                        variableTypes.addType(customVariableType, 0);
+                    }
                 }
             }
-        } else {
+
             if (variableTypes.getVariableType(CmmnAggregatedVariableType.TYPE_NAME) == null) {
                 variableTypes.addTypeBefore(new CmmnAggregatedVariableType(this), SerializableType.TYPE_NAME);
+            }
+        }
+
+        if (customPostVariableTypes != null) {
+            for (VariableType customVariableType : customPostVariableTypes) {
+                if (variableTypes.getVariableType(customVariableType.getTypeName()) == null) {
+                    variableTypes.addType(customVariableType);
+                }
             }
         }
     }
@@ -1733,6 +1750,7 @@ public class CmmnEngineConfiguration extends AbstractEngineConfiguration impleme
         
         historyJsonTransformers.add(new CaseInstanceStartHistoryJsonTransformer(this));
         historyJsonTransformers.add(new CaseInstanceEndHistoryJsonTransformer(this));
+        historyJsonTransformers.add(new CaseInstanceReactivateHistoryJsonTransformer(this));
         historyJsonTransformers.add(new CaseInstanceUpdateNameHistoryJsonTransformer(this));
         historyJsonTransformers.add(new CaseInstanceUpdateBusinessKeyHistoryJsonTransformer(this));
         historyJsonTransformers.add(new HistoricCaseInstanceDeletedHistoryJsonTransformer(this));

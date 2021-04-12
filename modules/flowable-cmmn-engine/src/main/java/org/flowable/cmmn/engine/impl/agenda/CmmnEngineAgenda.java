@@ -26,9 +26,13 @@ public interface CmmnEngineAgenda extends Agenda {
 
     void planInitPlanModelOperation(CaseInstanceEntity caseInstanceEntity);
 
+    void planReactivateCaseInstanceOperation(CaseInstanceEntity caseInstanceEntity);
+
     void planInitStageOperation(PlanItemInstanceEntity planItemInstanceEntity);
 
     void planCreatePlanItemInstanceOperation(PlanItemInstanceEntity planItemInstanceEntity);
+
+    void planReactivatePlanItemInstanceOperation(PlanItemInstanceEntity planItemInstanceEntity);
 
     void planCreatePlanItemInstanceForRepetitionOperation(PlanItemInstanceEntity planItemInstanceEntity);
 
