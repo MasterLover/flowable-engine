@@ -66,6 +66,8 @@ import org.flowable.form.api.FormFieldHandler;
 import org.flowable.form.api.FormInfo;
 import org.flowable.form.api.FormRepositoryService;
 import org.flowable.form.api.FormService;
+import org.flowable.identitylink.service.impl.persistence.entity.HistoricIdentityLinkEntity;
+import org.flowable.identitylink.service.impl.persistence.entity.IdentityLinkEntity;
 import org.flowable.job.service.JobService;
 import org.flowable.job.service.impl.persistence.entity.JobEntity;
 import org.flowable.variable.api.history.HistoricVariableInstance;
@@ -483,16 +485,13 @@ public class CaseInstanceHelperImpl implements CaseInstanceHelper {
         // copy the case variables first so we can directly set it on the new case instance so they don't get reloaded later
         Map<String, VariableInstanceEntity> variables = createCaseVariablesFromHistoricCaseInstance(historicCaseInstance);
         CaseInstanceEntity caseInstanceEntity = caseInstanceEntityManager.create(historicCaseInstance, variables);
-
-        // set the state back to active, not copying it from the historic one, obviously
-        caseInstanceEntity.setState(CaseInstanceState.ACTIVE);
         caseInstanceEntityManager.insert(caseInstanceEntity);
 
         // create runtime plan items from the history and set them as the new child plan item list
         caseInstanceEntity.setChildPlanItemInstances(createCasePlanItemsFromHistoricCaseInstance(historicCaseInstance, caseInstanceEntity));
 
-        // record the reactivation of the case in the history manager
-        cmmnEngineConfiguration.getCmmnHistoryManager().recordHistoricCaseInstanceReactivated(caseInstanceEntity);
+        // create identity links from history back to runtime
+        createCaseIdentityLinksFromHistoricCaseInstance(historicCaseInstance);
 
         return caseInstanceEntity;
     }
@@ -561,6 +560,21 @@ public class CaseInstanceHelperImpl implements CaseInstanceHelper {
             return newVars;
         }
         return Collections.emptyMap();
+    }
+
+    protected List<IdentityLinkEntity> createCaseIdentityLinksFromHistoricCaseInstance(HistoricCaseInstance historicCaseInstance) {
+        List<HistoricIdentityLinkEntity> historicIdentityLinks = cmmnEngineConfiguration.getIdentityLinkServiceConfiguration()
+            .getHistoricIdentityLinkService()
+            .findHistoricIdentityLinksByScopeIdAndScopeType(historicCaseInstance.getId(), ScopeTypes.CMMN);
+
+        List<IdentityLinkEntity> identityLinkEntities = new ArrayList<>(historicIdentityLinks.size());
+        for (HistoricIdentityLinkEntity historicIdentityLink : historicIdentityLinks) {
+            IdentityLinkEntity identityLink = cmmnEngineConfiguration.getIdentityLinkServiceConfiguration().getIdentityLinkService()
+                .createIdentityLinkFromHistoricIdentityLink(historicIdentityLink);
+            cmmnEngineConfiguration.getIdentityLinkServiceConfiguration().getIdentityLinkService().insertIdentityLink(identityLink);
+            identityLinkEntities.add(identityLink);
+        }
+        return identityLinkEntities;
     }
 
     @Override
