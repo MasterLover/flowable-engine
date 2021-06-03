@@ -127,6 +127,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public abstract class AbstractEngineConfiguration {
 
@@ -415,7 +416,7 @@ public abstract class AbstractEngineConfiguration {
     protected boolean usePrefixId;
 
     protected Clock clock;
-    protected ObjectMapper objectMapper = new ObjectMapper();
+    protected ObjectMapper objectMapper;
 
     // Variables
 
@@ -684,6 +685,13 @@ public abstract class AbstractEngineConfiguration {
         }
     }
 
+    public void initObjectMapper() {
+        if (objectMapper == null) {
+            objectMapper = new ObjectMapper();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        }
+    }
+
     public void initClock() {
         if (clock == null) {
             clock = new DefaultClockImpl();
@@ -840,9 +848,8 @@ public abstract class AbstractEngineConfiguration {
                 properties.put("limitBefore", "");
                 properties.put("limitAfter", "");
                 properties.put("limitBetween", "");
-                properties.put("limitBetweenNoDistinct", "");
-                properties.put("limitOuterJoinBetween", "");
                 properties.put("limitBeforeNativeQuery", "");
+                properties.put("limitAfterNativeQuery", "");
                 properties.put("blobType", "BLOB");
                 properties.put("boolValue", "TRUE");
 

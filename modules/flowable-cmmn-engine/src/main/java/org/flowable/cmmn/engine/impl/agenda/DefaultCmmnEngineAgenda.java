@@ -20,11 +20,13 @@ import org.flowable.cmmn.engine.impl.agenda.operation.CompleteCaseInstanceOperat
 import org.flowable.cmmn.engine.impl.agenda.operation.CompletePlanItemInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.CreatePlanItemInstanceForRepetitionOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.CreatePlanItemInstanceOperation;
+import org.flowable.cmmn.engine.impl.agenda.operation.CreateRepeatedPlanItemInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.DisablePlanItemInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.DismissPlanItemInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.EnablePlanItemInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.EvaluateCriteriaOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.EvaluateToActivatePlanItemInstanceOperation;
+import org.flowable.cmmn.engine.impl.agenda.operation.EvaluateVariableEventListenersOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.ExitPlanItemInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.InitPlanModelInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.InitStageInstanceOperation;
@@ -32,6 +34,7 @@ import org.flowable.cmmn.engine.impl.agenda.operation.InitiatePlanItemInstanceOp
 import org.flowable.cmmn.engine.impl.agenda.operation.OccurPlanItemInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.ReactivateCaseInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.ReactivatePlanItemInstanceOperation;
+import org.flowable.cmmn.engine.impl.agenda.operation.ReactivatePlanModelInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.StartPlanItemInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.TerminateCaseInstanceOperation;
 import org.flowable.cmmn.engine.impl.agenda.operation.TerminatePlanItemInstanceOperation;
@@ -104,6 +107,11 @@ public class DefaultCmmnEngineAgenda extends AbstractAgenda implements CmmnEngin
     }
 
     @Override
+    public void planReactivatePlanModelOperation(CaseInstanceEntity caseInstanceEntity) {
+        addOperation(new ReactivatePlanModelInstanceOperation(commandContext, caseInstanceEntity));
+    }
+
+    @Override
     public void planInitStageOperation(PlanItemInstanceEntity planItemInstanceEntity) {
         addOperation(new InitStageInstanceOperation(commandContext, planItemInstanceEntity));
     }
@@ -132,6 +140,11 @@ public class DefaultCmmnEngineAgenda extends AbstractAgenda implements CmmnEngin
     @Override
     public void planCreatePlanItemInstanceOperation(PlanItemInstanceEntity planItemInstanceEntity) {
         addOperation(new CreatePlanItemInstanceOperation(commandContext, planItemInstanceEntity));
+    }
+
+    @Override
+    public void planCreateRepeatedPlanItemInstanceOperation(PlanItemInstanceEntity planItemInstanceEntity) {
+        addOperation(new CreateRepeatedPlanItemInstanceOperation(commandContext, planItemInstanceEntity));
     }
 
     @Override
@@ -240,4 +253,8 @@ public class DefaultCmmnEngineAgenda extends AbstractAgenda implements CmmnEngin
         addOperation(new TerminateCaseInstanceOperation(commandContext, caseInstanceEntityId, false, exitCriterionId, exitType, exitEventType));
     }
 
+    @Override
+    public void planEvaluateVariableEventListenersOperation(String caseInstanceEntityId) {
+        addOperation(new EvaluateVariableEventListenersOperation(commandContext, caseInstanceEntityId));
+    }
 }
